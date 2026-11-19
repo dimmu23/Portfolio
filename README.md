@@ -144,6 +144,30 @@ The development API proxy does not apply to `vite preview`. To test the contact 
 
 ## Deployment
 
+### Vercel Services (Beta)
+
+The root `vercel.json` deploys both apps in one Vercel project. Keep the project's Root Directory at the repository root containing this file, rather than selecting `portfnew`.
+
+- `backend` serves public `/api/*` requests, preserving the `/api` prefix used by Express.
+- `portfnew` serves the portfolio and static assets on all other paths, with an SPA fallback.
+- No private bindings are needed: React calls the public API from the visitor's browser. Bindings are only available to server functions at runtime, not to the Vite build or browser.
+
+In the Vercel project's environment settings, set `EMAIL_USER` and `EMAIL_PASS` for the environments you deploy. Set `ALLOWED_ORIGINS` to the exact website origin (for example `https://your-project.vercel.app`). Include custom domains or preview origins as comma-separated entries when needed; otherwise the contact endpoint rejects those browser requests. Never prefix email credentials with `VITE_`.
+
+Leave `VITE_API_BASE_URL` unset so the form calls `/api/contact` on its own deployment. The local `.env` file is ignored by Git and is not uploaded as production configuration.
+
+After installing dependencies and configuring `backend/.env`, test both services together from the repository root:
+
+```powershell
+npx vercel@latest dev --local
+```
+
+Include the origin printed by this command in your local `ALLOWED_ORIGINS` (usually `http://localhost:3000`). Check the homepage, resume download, and `/api/health`. A real contact-form submission sends email. After deploying, repeat these checks on the deployed domain.
+
+See the [Vercel Services documentation](https://vercel.com/docs/services).
+
+### Other hosting options
+
 The frontend and backend must both be reachable for the contact form to work.
 
 1. Deploy the backend on a Node.js host that supports outgoing SMTP. Install dependencies and start it with `npm start` from `backend`.
