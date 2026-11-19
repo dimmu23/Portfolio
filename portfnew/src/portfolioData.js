@@ -18,6 +18,7 @@ export const projects = [
     metricLabel: "Sync time after moving to background jobs",
     url: "https://pib-daily-digest.vercel.app",
     theme: "digest",
+    logo: "project-logos/daily-digest.svg",
   },
   {
     name: "Paperfy",
@@ -29,6 +30,31 @@ export const projects = [
     metricLabel: "Reduction in PDF processing wait time",
     url: "https://paperfy-lovat.vercel.app/",
     theme: "paperfy",
+    logo: "project-logos/paperfy.png",
+  },
+  {
+    name: "Quizzy",
+    category: "AI-based quiz application",
+    description:
+      "Generate quizzes by topic, difficulty, and question count with Google Gemini. A full-stack quiz platform with authentication, score tracking, quiz history, and performance dashboards.",
+    tags: ["React", "Gemini", "Express.js", "MongoDB", "Tailwind CSS"],
+    metric: "AI quizzes",
+    metricLabel: "Personalized practice with tracked results",
+    url: "https://quizzy-black-nine.vercel.app/",
+    theme: "quizzy",
+    logo: "project-logos/quizzy.png",
+  },
+  {
+    name: "ExpenseEase",
+    category: "Full-stack expense tracker",
+    description:
+      "Track income and expenses with protected, user-specific dashboards. Explore balances and trends, export data to Excel, and upload images using Cloudinary.",
+    tags: ["React", "Express.js", "MongoDB", "JWT", "Cloudinary"],
+    metric: "Excel export",
+    metricLabel: "Expense data ready to download and manage",
+    url: "https://expense-ease-silk.vercel.app",
+    theme: "expensease",
+    logo: "project-logos/expensease.png",
   },
 ];
 

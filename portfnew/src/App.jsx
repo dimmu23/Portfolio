@@ -12,8 +12,6 @@ import {
   X,
   ExternalLink,
   Phone,
-  FileText,
-  BookOpen,
   Braces,
   Download,
 } from "lucide-react";
@@ -95,7 +93,7 @@ function Header() {
           aria-label="Sumit Saraswat, home"
           onClick={() => setOpen(false)}
         >
-          sumit<span>.</span>
+          sumit<span>.</span>saraswat
         </a>
         <button
           ref={toggle}
@@ -238,6 +236,65 @@ function Expertise() {
 }
 
 function Projects() {
+  const trackRef = useRef(null);
+  const [position, setPosition] = useState({ index: 0, visible: 2, max: 2 });
+
+  useEffect(() => {
+    const track = trackRef.current;
+    function syncPosition() {
+      const cards = track.children;
+      if (cards.length < 2) return;
+      const step = cards[1].offsetLeft - cards[0].offsetLeft;
+      const max = Math.max(
+        0,
+        Math.round((track.scrollWidth - track.clientWidth) / step),
+      );
+      const index = Math.min(
+        max,
+        Math.max(0, Math.round(track.scrollLeft / step)),
+      );
+      const visible = Math.max(1, Math.round(track.clientWidth / step));
+      setPosition((current) =>
+        current.index === index &&
+        current.visible === visible &&
+        current.max === max
+          ? current
+          : { index, visible, max },
+      );
+    }
+    const observer = new ResizeObserver(syncPosition);
+    observer.observe(track);
+    track.addEventListener("scroll", syncPosition, { passive: true });
+    return () => {
+      observer.disconnect();
+      track.removeEventListener("scroll", syncPosition);
+    };
+  }, []);
+
+  function goTo(index) {
+    const track = trackRef.current;
+    const step = track.children[1].offsetLeft - track.children[0].offsetLeft;
+    track.scrollTo({
+      left: Math.min(position.max, Math.max(0, index)) * step,
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "instant"
+        : "smooth",
+    });
+  }
+
+  function handleSliderKey(event) {
+    if (event.target !== event.currentTarget) return;
+    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+    event.preventDefault();
+    goTo(
+      event.key === "Home"
+        ? 0
+        : event.key === "End"
+          ? position.max
+          : position.index + (event.key === "ArrowRight" ? 1 : -1),
+    );
+  }
+
   return (
     <section id="projects" className="section-shell section-spacing">
       <div className="section-heading">
@@ -254,81 +311,112 @@ function Projects() {
           <Github size={17} /> More on GitHub
         </a>
       </div>
-      <div className="project-grid">
-        {projects.map((project) => (
-          <article className="project-card" key={project.name}>
-            <div
-              className={`project-visual ${project.theme}`}
-              aria-hidden="true"
+      <div
+        className="project-carousel"
+        role="region"
+        aria-roledescription="carousel"
+        aria-label="Selected projects"
+      >
+        <p className="slider-hint" id="project-slider-hint">
+          Browse with the controls, swipe, or use the arrow keys when the slider
+          is focused.
+        </p>
+        <div
+          className="project-slider"
+          id="project-slider"
+          ref={trackRef}
+          tabIndex={0}
+          onKeyDown={handleSliderKey}
+          aria-label="Project cards"
+          aria-describedby="project-slider-hint"
+        >
+          {projects.map((project, index) => (
+            <article
+              className="project-card"
+              key={project.name}
+              aria-label={`${index + 1} of ${projects.length}: ${project.name}`}
+              aria-roledescription="slide"
             >
-              {project.theme === "digest" ? (
-                <div className="digest-preview">
-                  <div className="preview-top">
-                    <span>DAILY / DIGEST</span>
-                    <BookOpen size={18} />
-                  </div>
-                  <div className="preview-rule" />
-                  <div className="preview-headline">
-                    Less noise.
-                    <br />
-                    More perspective.
-                  </div>
-                  <div className="preview-pills">
-                    <span>Current affairs</span>
-                    <span>AI insights</span>
-                  </div>
-                  <div className="preview-lines">
-                    <i />
-                    <i />
-                    <i />
-                  </div>
-                </div>
-              ) : (
-                <div className="paper-preview">
-                  <div className="paper-sheet">
-                    <FileText size={28} />
-                    <div className="paper-lines">
-                      <i />
-                      <i />
-                      <i />
-                    </div>
-                  </div>
-                  <div className="paper-insight">
-                    <span className="insight-mark">✦</span>
-                    <span>Research, understood.</span>
-                  </div>
-                  <span className="paper-wordmark">paperfy.</span>
-                </div>
-              )}
-            </div>
-            <div className="project-content">
-              <p className="eyebrow">{project.category}</p>
-              <h3>{project.name}</h3>
-              <p>{project.description}</p>
-              <ul
-                className="tag-list"
-                aria-label={`${project.name} technologies`}
-              >
-                {project.tags.map((tag) => (
-                  <li key={tag}>{tag}</li>
-                ))}
-              </ul>
-              <div className="project-result">
-                <strong>{project.metric}</strong>
-                <span>{project.metricLabel}</span>
+              <div className={`project-visual ${project.theme}`}>
+                <img
+                  className="project-logo"
+                  src={`${import.meta.env.BASE_URL}${project.logo}`}
+                  alt={`${project.name} logo`}
+                  width={140}
+                  height={140}
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
-              <a
-                className="project-link"
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
+              <div className="project-content">
+                <p className="eyebrow">{project.category}</p>
+                <h3>{project.name}</h3>
+                <p>{project.description}</p>
+                <ul
+                  className="tag-list"
+                  aria-label={`${project.name} technologies`}
+                >
+                  {project.tags.map((tag) => (
+                    <li key={tag}>{tag}</li>
+                  ))}
+                </ul>
+                <div className="project-result">
+                  <strong>{project.metric}</strong>
+                  <span>{project.metricLabel}</span>
+                </div>
+                <a
+                  className="project-link"
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Explore {project.name}
+                  <ExternalLink size={17} />
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+        <div className="slider-controls">
+          <p className="slider-status" aria-live="polite" aria-atomic="true">
+            Projects {position.index + 1}
+            {position.visible > 1
+              ? `–${Math.min(projects.length, position.index + position.visible)}`
+              : ""}{" "}
+            of {projects.length}
+          </p>
+          <div className="slider-dots" aria-label="Choose project slide">
+            {Array.from({ length: position.max + 1 }, (_, index) => (
+              <button
+                key={index}
+                type="button"
+                aria-label={`Show projects starting with ${projects[index].name}`}
+                aria-current={position.index === index ? "true" : undefined}
+                onClick={() => goTo(index)}
               >
-                Explore {project.name}
-                <ExternalLink size={17} />
-              </a>
-            </div>
-          </article>
-        ))}
+                <span />
+              </button>
+            ))}
+          </div>
+          <div className="slider-buttons">
+            <button
+              type="button"
+              aria-controls="project-slider"
+              disabled={position.index === 0}
+              onClick={() => goTo(position.index - 1)}
+            >
+              Previous
+            </button>
+            <button
+              type="button"
+              aria-controls="project-slider"
+              disabled={position.index === position.max}
+              onClick={() => goTo(position.index + 1)}
+            >
+              Next
+            </button>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -421,6 +509,15 @@ function Resume() {
               </div>
               <h3>S.L. Memorial English School</h3>
               <p>Class 12 · RBSE</p>
+              <span className="muted">Nokha, India</span>
+            </article>
+            <article>
+              <div className="education-meta">
+                <span>2018 — 2019</span>
+                <span className="grade">92.00%</span>
+              </div>
+              <h3>S.L. Memorial English School</h3>
+              <p>Class 10 · RBSE</p>
               <span className="muted">Nokha, India</span>
             </article>
           </div>
@@ -560,7 +657,7 @@ export default function App() {
       </main>
       <footer className="site-footer section-shell">
         <a className="wordmark" href="#home">
-          sumit<span>.</span>
+          sumit<span>.</span>saraswat
         </a>
         <p>© {new Date().getFullYear()} Sumit Saraswat</p>
         <a className="back-top" href="#home">
