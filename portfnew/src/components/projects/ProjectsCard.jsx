@@ -18,14 +18,14 @@ const ProjectsCard = ({ title, des, src, githubLink, liveLink, isEven }) => {
       group hover:bg-gradient-to-b hover:from-gray-900 hover:gray-900 transition-colors duration-1000`}>
       
       {/* Image Container with subtle border effect */}
-      <div className={`w-full h-auto overflow-hidden rounded-lg 
+      {src && <div className={`w-full h-auto overflow-hidden rounded-lg
         ${isEven ? 'border border-[#2a2e35]' : 'border border-[#25282d]'}`}>
         <img
           className='w-full h-full max-h-60 object-cover group-hover:scale-110 duration-300 cursor-pointer'
           src={src}
           alt={title}
         />
-      </div>
+      </div>}
       
       <div className='w-full mt-5 flex flex-col gap-6'>
         <div>
@@ -35,7 +35,7 @@ const ProjectsCard = ({ title, des, src, githubLink, liveLink, isEven }) => {
               {title}
             </h3>
             <div className="flex gap-2">
-              <span 
+              {githubLink && <span
                 onClick={() => handleIconClick(githubLink)}
                 className={`text-lg w-10 h-10 rounded-full inline-flex justify-center items-center 
                   ${isEven ? 
@@ -45,7 +45,7 @@ const ProjectsCard = ({ title, des, src, githubLink, liveLink, isEven }) => {
                 title={githubLink ? "View on GitHub" : "GitHub link not available"}
               >
                 <BsGithub />
-              </span>
+              </span>}
               <span 
                 onClick={() => handleIconClick(liveLink)}
                 className={`text-lg w-10 h-10 rounded-full inline-flex justify-center items-center 

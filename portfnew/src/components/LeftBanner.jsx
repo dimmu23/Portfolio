@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTypewriter, Cursor } from 'react-simple-typewriter';
-import { FaGithub, FaLinkedin, FaJava, FaReact } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaReact } from 'react-icons/fa';
 import {
   SiTailwindcss,
   SiJavascript,
@@ -9,14 +9,15 @@ import {
   SiCss3,
   SiMongodb,
   SiExpress,
-  SiMysql,
+  SiPostgresql,
+  SiTypescript,
   SiLeetcode,
 } from 'react-icons/si';
 import TypingAnimation from './typewriter/TypingAnimation';
 
 const LeftBanner = () => {
   const [text] = useTypewriter({
-    words: ['Web Developer', 'MERN Stack Enthusiast', 'Tech Lover'],
+    words: ['Web Developer', 'Full Stack Developer', 'Software Developer'],
     loop: true,
     typeSpeed: 40,
     deleteSpeed: 30,
@@ -32,8 +33,8 @@ const LeftBanner = () => {
     { Icon: SiTailwindcss, title: 'Tailwind CSS' },
     { Icon: SiHtml5, title: 'HTML5' },
     { Icon: SiCss3, title: 'CSS3' },
-    { Icon: FaJava, title: 'Java' },
-    { Icon: SiMysql, title: 'MySQL' },
+    { Icon: SiTypescript, title: 'TypeScript' },
+    { Icon: SiPostgresql, title: 'PostgreSQL' },
   ];
 
   return (
@@ -63,7 +64,7 @@ const LeftBanner = () => {
                 hideCursorAfterComplete={true}
               />
               &nbsp;
-              <span className='text-[var(--color-designColor)]'>Yashmeet Swami</span>
+              <span className='text-[var(--color-designColor)]'>Sumit Saraswat</span>
             </div>
           </h1>
 
@@ -77,7 +78,7 @@ const LeftBanner = () => {
         {/* Description */}
         <p className='text-base font-body text-gray-400 leading-relaxed max-w-[90%]'>
           <TypingAnimation
-            text="I'm a web developer specializing in the MERN stack. I build clean, responsive, and user-friendly applications with a focus on performance and accessibility."
+            text="I'm a software engineer skilled in backend and full-stack development, building applications with Next.js, Node.js, and TypeScript, including AI-powered platforms using RAG and background job pipelines."
             speed={30}
             delay={2200}
             hideCursorAfterComplete={true}
@@ -92,7 +93,7 @@ const LeftBanner = () => {
           <h2 className='text-sm uppercase font-title tracking-widest text-gray-400'>Find me on</h2>
           <div className='flex gap-4'>
             <a
-              href='https://www.linkedin.com/in/yashmeet-swami/'
+              href='https://www.linkedin.com/in/sumit2saraswat'
               target='_blank'
               rel='noopener noreferrer'
               className='icon-box'
@@ -101,7 +102,7 @@ const LeftBanner = () => {
               <FaLinkedin size={20} />
             </a>
             <a
-              href='https://github.com/Yashmeet-Swami'
+              href='https://github.com/dimmu23'
               target='_blank'
               rel='noopener noreferrer'
               className='icon-box'
@@ -110,7 +111,7 @@ const LeftBanner = () => {
               <FaGithub size={20} />
             </a>
             <a
-              href='https://leetcode.com/u/22ucc120/'
+              href='https://leetcode.com/u/22uec138/'
               target='_blank'
               rel='noopener noreferrer'
               className='icon-box'

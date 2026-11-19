@@ -14,19 +14,19 @@ const Features = () => {
         <div className='w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 xl:gap-20'>
           <Card
             title="Web Development"
-            des="I build modern, scalable, and responsive websites using the latest frontend and backend technologies to ensure seamless user experiences."
+            des="I build full-stack applications using Next.js, React, Node.js, and TypeScript."
             icon={<AiFillCode />}
           />
 
           <Card
-            title="UI/UX Design"
-            des="I craft visually appealing and intuitive interfaces that prioritize user experience, ensuring easy navigation and engagement across devices."
+            title="AI Applications"
+            des="I build AI-powered applications with RAG, LLMs, embeddings, and Qdrant vector databases."
             icon={<AiFillInteraction />}
           />
 
           <Card
-            title="SEO Optimization"
-            des="I enhance website structure, content, and performance to improve visibility on search engines, helping businesses reach their target audience effectively."
+            title="Backend Development"
+            des="I develop REST APIs and asynchronous background pipelines using Express.js, PostgreSQL, Redis, and BullMQ."
             icon={<AiFillSignal />}
           />
 

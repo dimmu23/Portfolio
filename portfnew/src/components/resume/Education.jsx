@@ -12,28 +12,22 @@ const Education = () => {
             {/* Left Column - Education */}
             <div className='flex-1'>
                     <div className='py-6 font-[var(--font-title)]'>
-                        <p className='text-sm text-[var(--color-designColor)] tracking-[4px]'>2019 - 2025</p>
+                        <p className='text-sm text-[var(--color-designColor)] tracking-[4px]'>2020 - 2026</p>
                         <h2 className='text-4xl font-bold'>Education Qualification</h2>
                     </div>
 
                     <div className='mt-6 w-full h-auto border-l-[6px] border-l-black border-opacity-30 flex flex-col gap-10'>
                         <ResumeCard
-                            title='Computer and Communication Engineering'
-                            subTitle='The LNM Institute of Information Technology, Jaipur (2022 - Present)'
-                            result='7.78/10 (CGPA)'
-                            des='Currently pursuing a Bachelor of Technology in Computer and Communication Engineering (2022-2026) building expertise in software development, algorithms, and full-stack web applications.'
+                            title='Electronics and Communication Engineering'
+                            subTitle='The LNM Institute of Information Technology, Jaipur (2022 - 2026)'
+                            result='7.14/10 (CGPA)'
+                            des='Bachelor of Technology in Electronics and Communication Engineering (2022–2026).'
                         />
                         <ResumeCard
                             title='Senior Secondary Education'
-                            subTitle='Maharishi Dayanand Public School, Jaipur (2021)'
-                            result='87.40%'
-                            des='Scored 87.40% in the Class 12 CBSE Examination, with a focus on Science and Mathematics.'
-                        />
-                        <ResumeCard
-                            title='Secondary Education'
-                            subTitle='St. Teresa School, Jaipur (2019)'
-                            result='94%'
-                            des='Achieved 94% in the Class 10 CBSE Examination, demonstrating a strong foundation in core subjects.'
+                            subTitle='S.L. Memorial English School, Nokha (2020 - 2021)'
+                            result='98.40%'
+                            des='Scored 98.40% in the Class 12 RBSE Examination.'
                         />
                     </div>
         </div>
@@ -47,16 +41,10 @@ const Education = () => {
 
                     <div className='mt-6 w-full h-auto border-l-[6px] border-l-black border-opacity-30 flex flex-col gap-10'>
                         <ResumeCard
-                            title='JEE Advanced'
-                            subTitle='Indian Institutes of Technology (2022)'
-                            result='AIR 20000'
-                            des='Secured All India Rank of 19746 in JEE Advanced, among top 11.1% of candidates nationwide.'
-                        />
-                        <ResumeCard
-                            title='JEE Mains'
+                            title='JEE Main'
                             subTitle='National Testing Agency (2022)'
-                            result='97 Percentile'
-                            des='Achieved 97 percentile in JEE Mains, demonstrating strong aptitude in Physics, Chemistry, and Mathematics.'
+                            result='AIR 39,081'
+                            des='Secured All India Rank 39,081 in JEE Main 2022 among over one million candidates.'
                         />
                     </div>
                 </div>

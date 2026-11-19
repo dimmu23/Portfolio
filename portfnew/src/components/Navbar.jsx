@@ -3,7 +3,7 @@ import { Link } from "react-scroll";
 import { FiMenu } from "react-icons/fi";
 import "../index.css";
 import { MdClose } from "react-icons/md";
-import { FaLinkedinIn, FaInstagram, FaTwitter } from "react-icons/fa";
+import { FaLinkedinIn, FaGithub, FaCode } from "react-icons/fa";
 import { navLinksdata } from "../constants/index";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -110,10 +110,11 @@ const Navbar = () => {
                       Find Me In
                     </h2>
                     <div className="flex gap-5">
-                      {[FaInstagram, FaTwitter, FaLinkedinIn].map((Icon, i) => (
+                      {[{ Icon: FaGithub, url: 'https://github.com/dimmu23', label: 'GitHub' }, { Icon: FaCode, url: 'https://leetcode.com/u/22uec138/', label: 'LeetCode' }, { Icon: FaLinkedinIn, url: 'https://www.linkedin.com/in/sumit2saraswat', label: 'LinkedIn' }].map(({ Icon, url, label }, i) => (
                         <a
                           key={i}
-                          href="#"
+                          href={url}
+                          aria-label={label}
                           className="w-12 h-12 flex items-center justify-center bg-black/30 backdrop-blur-sm rounded-xl text-white hover:bg-[var(--color-designColor)]/20 hover:scale-105 transition-all duration-300 border border-gray-600/30"
                         >
                           <Icon className="text-lg" />

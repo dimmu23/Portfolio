@@ -1,6 +1,6 @@
 import React from 'react';
 import { contactImg } from '../../assets/index.js';
-import { FaInstagram, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
+import { FaGithub, FaCode, FaLinkedinIn } from 'react-icons/fa';
 
 const ContactLeft = () => {
     return (
@@ -12,19 +12,19 @@ const ContactLeft = () => {
             />
             <div className='flex flex-col gap-3'>
                 <h3 className='text-3xl font-bold text-white'>
-                    Yashmeet Swami
+                    Sumit Saraswat
                 </h3>
                 <p className='text-lg font-normal text-gray-400'>
-                    MERN Stack Developer
+                    Software Engineer
                 </p>
                 <p className='text-base text-gray-400 tracking-wide'>
                     "I'm always open to new projects, creative collaborations, and opportunities. Have a question or want to work together? Feel free to reach out!"
                 </p>
                 <p className='text-base text-gray-400 flex items-center gap-2'>
-                    Phone: <span className='text-[var(--color-lighttext)]'>+91 9509424412</span>
+                    Phone: <span className='text-[var(--color-lighttext)]'>+91 6350248296</span>
                 </p>
                 <p className="text-base text-gray-400 flex items-center gap-2">
-                    Email: <span className="text-[var(--color-lighttext)]">yashmeetswami@gmail.com</span>
+                    Email: <span className="text-[var(--color-lighttext)]">sumitsaraswat2308@gmail.com</span>
                 </p>
             </div>
             <div className="flex flex-col gap-4">
@@ -33,35 +33,35 @@ const ContactLeft = () => {
                 </h2>
 
                 <div className="flex gap-4">
-                    {/* Instagram */}
+                    {/* GitHub */}
                     <a
-                        href="https://instagram.com"
+                        href="https://github.com/dimmu23"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-11 h-11 flex items-center justify-center rounded-md bg-black text-white
         transition-all duration-300 ease-in-out hover:text-[var(--color-designColor)]
         hover:scale-110 hover:shadow-[0_0_10px_var(--color-designColor)]"
-                        title="Instagram"
+                        title="GitHub"
                     >
-                        <FaInstagram size={20} />
+                        <FaGithub size={20} />
                     </a>
 
-                    {/* Twitter */}
+                    {/* LeetCode */}
                     <a
-                        href="https://twitter.com"
+                        href="https://leetcode.com/u/22uec138/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-11 h-11 flex items-center justify-center rounded-md bg-black text-white
         transition-all duration-300 ease-in-out hover:text-[var(--color-designColor)]
         hover:scale-110 hover:shadow-[0_0_10px_var(--color-designColor)]"
-                        title="Twitter"
+                        title="LeetCode"
                     >
-                        <FaTwitter size={20} />
+                        <FaCode size={20} />
                     </a>
 
                     {/* LinkedIn */}
                     <a
-                        href="https://linkedin.com"
+                        href="https://www.linkedin.com/in/sumit2saraswat"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-11 h-11 flex items-center justify-center rounded-md bg-black text-white
